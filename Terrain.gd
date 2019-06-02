@@ -1,16 +1,21 @@
 extends TileMap
 
+var tiles : Array
+var width : int
+
 class Tile:
-	const types = { 
-		CONCRETE = "concrete"
+	const types = {
+		CONCRETE = "concrete",
+		METAL = "metal"
 	}
 	var type
 	
 	func _init(type):
 		self.type = type
 
-var tiles : Array
-var width : int
+var MetalTile = Tile.new(Tile.types.METAL)
+var ConcreteTile = Tile.new(Tile.types.CONCRETE)
+
 
 func draw_map():
 	for i in range(tiles.size()):
@@ -19,14 +24,14 @@ func draw_map():
 	
 	update_bitmask_region(Vector2(0, 0), Vector2(width, tiles.size() / width))
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	var tileset : TileSet = preload("res://tiles.tres")
-	tile_set = tileset
+	tile_set = preload("res://tiles.tres")
 	cell_size = Vector2(16, 16)
 	tiles = [
-		Tile.new(Tile.types.CONCRETE), Tile.new(Tile.types.CONCRETE),
-		Tile.new(Tile.types.CONCRETE)
+		ConcreteTile, ConcreteTile, MetalTile,
+		ConcreteTile, ConcreteTile, MetalTile,
+		MetalTile
 	]
-	width = 2
+	width = 3
+	
 	draw_map()
