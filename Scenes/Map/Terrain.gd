@@ -25,7 +25,7 @@ func draw_map():
 	update_bitmask_region(Vector2(0, 0), Vector2(width, tiles.size() / width))
 
 func _ready():
-	tile_set = preload("res://tiles.tres")
+	tile_set = preload("res://Tilesets/tiles.tres")
 	cell_size = Vector2(16, 16)
 	tiles = [
 		ConcreteTile, ConcreteTile, MetalTile,
